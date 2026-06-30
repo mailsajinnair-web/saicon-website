@@ -1,0 +1,640 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Client Success — Saicon Technology Artisans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+html{font-size:18px}
+/* ============================================================
+   SAICON CLIENT SUCCESS — Outcomes, not slide decks.
+   ============================================================ */
+
+:root{
+  --bg:#F4F2EE; --bg-2:#FFFFFF; --bg-3:#EAE7E0;
+  --navy:#1A2456; --navy-2:#0C1220; --navy-l:#2E3F7A;
+  --gold:#C4902A; --gold-l:#E8C56A; --gold-d:#8B6420;
+  --text:#0D1225; --text-m:rgba(13,18,37,.55); --text-d:rgba(13,18,37,.30);
+  --border:rgba(13,18,37,.08); --border-s:rgba(13,18,37,.04);
+  --ease-s:cubic-bezier(.19,1,.22,1); --ease-b:cubic-bezier(.34,1.56,.64,1);
+  --fh:'Plus Jakarta Sans',sans-serif; --fb:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:1rem;
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* ─── BLOB ANIMATIONS ─────────────────────────────────── */
+@keyframes blobDrift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(45px,-55px) scale(1.15)}66%{transform:translate(-30px,35px) scale(.9)}}
+@keyframes blobDrift2{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(-40px,45px) scale(1.1)}75%{transform:translate(30px,-25px) scale(.93)}}
+@keyframes blobDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(35px,-40px) scale(1.12)}}
+.blob{position:absolute;border-radius:50%;filter:blur(85px);pointer-events:none}
+.blob-1{width:500px;height:500px;animation:blobDrift1 10s ease-in-out infinite}
+.blob-2{width:380px;height:380px;animation:blobDrift2 13s ease-in-out infinite}
+.blob-3{width:300px;height:300px;animation:blobDrift3 8s ease-in-out infinite}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:70px;
+  transition:background .3s,border-color .3s,box-shadow .3s;
+  border-bottom:1px solid transparent}
+.nav-logo{display:flex;align-items:center;gap:.55rem;
+  font-family:var(--fh);font-size:1.28rem;font-weight:800;
+  letter-spacing:-.03em;color:#fff;transition:color .3s}
+.nav-logo b{color:var(--gold-l);font-weight:800}
+.nav-links{display:flex;gap:2.25rem;align-items:center}
+.nav-links a{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.72);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:#fff;font-weight:600}
+.nav-cta{padding:.52rem 1.2rem!important;background:var(--gold)!important;
+  color:#fff!important;border-radius:6px;font-weight:600!important;
+  transition:background .2s,color .2s!important;font-size:.82rem!important}
+.nav-cta:hover{background:var(--gold-l)!important;color:var(--navy)!important}
+.nav.sc{background:rgba(244,242,238,.96);backdrop-filter:blur(14px);
+  border-color:var(--border);box-shadow:0 1px 20px rgba(13,18,37,.06)}
+.nav.sc .nav-logo{color:var(--navy)}
+.nav.sc .nav-links a{color:var(--text);opacity:.65}
+.nav.sc .nav-links a:hover{opacity:1;color:var(--navy)}
+.nav.sc .nav-links a.active{opacity:1;color:var(--navy);font-weight:600}
+.nav.sc .nav-cta{opacity:1!important}
+
+/* ─── BUTTONS ─────────────────────────────────────────── */
+.btn-pri{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 1.9rem;background:var(--gold);color:#fff;
+  font-family:var(--fh);font-size:.875rem;font-weight:600;border-radius:6px;
+  transition:background .22s,transform .18s}
+.btn-pri:hover{background:var(--gold-l);color:var(--navy);transform:translateY(-2px)}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero{min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;background:var(--navy-2);padding:120px 3rem 80px}
+.hero-inner{position:relative;z-index:2;max-width:820px}
+.hero-eye{display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem}
+.hero-eye::before{content:'';width:22px;height:2px;background:var(--gold)}
+.hero-h{font-family:var(--fh);font-size:clamp(3rem,7vw,5.8rem);
+  font-weight:800;letter-spacing:-.06em;line-height:.98;color:#fff;margin-bottom:1.5rem}
+.hero-p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:580px;
+  line-height:1.8;margin-bottom:2.5rem}
+
+/* Hero stats row */
+.hero-stat-row{display:flex;gap:2.5rem;flex-wrap:wrap}
+.h-stat{}
+.h-stat-n{font-family:var(--fh);font-size:2.2rem;font-weight:800;
+  letter-spacing:-.05em;color:#fff}
+.h-stat-l{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:.2rem}
+
+/* Decorative mark */
+.hero-deco{position:absolute;right:4%;top:50%;transform:translateY(-48%);
+  width:38%;max-width:440px;z-index:1;pointer-events:none}
+
+/* ─── CLIENT LOGOS ────────────────────────────────────── */
+.logos-sec{background:var(--bg-2);padding:4rem 3rem;
+  border-bottom:1px solid var(--border)}
+.logos-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-d);text-align:center;margin-bottom:2.5rem}
+.logos-track{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 1.25rem;
+  max-width:1000px;margin:0 auto}
+.logo-badge{font-size:.82rem;font-weight:600;color:var(--text-m);
+  padding:.5rem 1.25rem;border:1px solid var(--border);border-radius:100px;
+  background:var(--bg);transition:border-color .2s,color .2s,background .2s}
+.logo-badge:hover{border-color:rgba(196,144,42,.4);color:var(--navy);
+  background:rgba(196,144,42,.04)}
+
+/* ─── SECTION STRUCTURE ───────────────────────────────── */
+.sec{padding:7rem 3rem}
+.sec-cream{background:var(--bg)}
+.sec-white{background:var(--bg-2)}
+.sec-navy{background:var(--navy);position:relative;overflow:hidden}
+.sec-eye{display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold)}
+.sec-eye::before{content:'';width:18px;height:2px;background:var(--gold)}
+
+/* ─── CASE STUDY SECTIONS ─────────────────────────────── */
+.case-sec{padding:6rem 3rem;position:relative;overflow:hidden}
+.case-sec:nth-child(odd){background:var(--bg)}
+.case-sec:nth-child(even){background:var(--bg-2)}
+
+.case-wrap{max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:start}
+.case-wrap.flip{grid-template-columns:420px 1fr}
+.case-wrap.flip .case-right{order:-1}
+
+/* Case study number */
+.case-index{font-family:var(--fh);font-size:5.5rem;font-weight:800;
+  letter-spacing:-.1em;color:rgba(13,18,37,.05);line-height:1;
+  position:absolute;right:3rem;top:5rem;pointer-events:none;user-select:none}
+.case-sec:nth-child(even) .case-index{left:3rem;right:auto;
+  color:rgba(13,18,37,.04)}
+
+.case-left{}
+.case-tag{font-size:.67rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.case-h{font-family:var(--fh);font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:800;letter-spacing:-.04em;line-height:1.2;
+  color:var(--navy);margin-bottom:1.25rem}
+
+/* Challenge / Solution accordion-style blocks */
+.case-block{margin-bottom:1.25rem}
+.case-block-label{font-size:.67rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-d);margin-bottom:.5rem}
+.case-block-body{font-size:.9rem;color:var(--text-m);line-height:1.78}
+
+/* Results column */
+.case-right{}
+.results-card{background:var(--navy);border-radius:14px;padding:2rem;
+  position:relative;overflow:hidden}
+.case-sec:nth-child(even) .results-card{background:var(--bg);
+  border:1px solid var(--border)}
+.case-sec:nth-child(even) .results-card .r-val{color:var(--navy)}
+.case-sec:nth-child(even) .results-card .r-label{color:var(--text-m)}
+.case-sec:nth-child(even) .results-card .r-divider{background:var(--border)}
+.case-sec:nth-child(even) .results-card .results-title{color:var(--text-d)}
+.results-card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(196,144,42,.1) 0%,transparent 50%);
+  pointer-events:none}
+.results-title{font-size:.67rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.25rem;
+  position:relative;z-index:1}
+.results-list{display:flex;flex-direction:column;gap:0;position:relative;z-index:1}
+.r-item{display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.r-item:last-child{border-bottom:none}
+.r-val{font-family:var(--fh);font-size:1.5rem;font-weight:800;
+  letter-spacing:-.04em;color:#fff;flex-shrink:0}
+.r-label{font-size:.78rem;color:rgba(255,255,255,.4);text-align:right;max-width:150px}
+.r-divider{height:1px;background:rgba(255,255,255,.06);margin:.5rem 0}
+
+/* ─── INDUSTRIES SECTION ──────────────────────────────── */
+.industries-sec{background:var(--bg-3);padding:5rem 3rem}
+.ind-header{text-align:center;max-width:500px;margin:0 auto 3rem}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto}
+.ind-item{background:#fff;border:1px solid var(--border);border-radius:8px;
+  padding:1.25rem 1.5rem;text-align:center;
+  font-size:.85rem;font-weight:600;color:var(--navy);
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.ind-item:hover{border-color:rgba(196,144,42,.4);transform:translateY(-3px);
+  box-shadow:0 6px 20px rgba(13,18,37,.08)}
+
+/* ─── CTA SECTION ─────────────────────────────────────── */
+.cta-sec{background:var(--navy);padding:7rem 3rem;text-align:center;
+  position:relative;overflow:hidden}
+.cta-eye{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;
+  justify-content:center;gap:.6rem}
+.cta-eye::before,.cta-eye::after{content:'';width:22px;height:2px;background:var(--gold)}
+.cta-h{font-family:var(--fh);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;
+  letter-spacing:-.05em;color:#fff;margin-bottom:1rem}
+.cta-sub{font-size:1rem;color:rgba(255,255,255,.6);margin-bottom:2.5rem;
+  max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+.footer{background:var(--navy-2);padding:4rem 3rem 2.5rem;
+  border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:grid;grid-template-columns:260px 1fr;gap:4rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-brand .f-logo{display:flex;align-items:center;gap:.55rem;
+  font-family:var(--fh);font-size:1.28rem;font-weight:800;letter-spacing:-.03em;
+  color:#fff;margin-bottom:1rem}
+.footer-brand .f-logo b{color:var(--gold-l)}
+.footer-tag{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7;max-width:220px}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.footer-col-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.1rem}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.5);
+  margin-bottom:.6rem;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{padding-top:2rem;display:flex;justify-content:space-between;
+  font-size:.76rem;color:rgba(255,255,255,.28);align-items:center}
+
+/* ─── REVEAL ──────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s var(--ease-s)}
+.rv.iv{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}
+.rv-d2{transition-delay:.22s}
+.rv-d3{transition-delay:.32s}
+.nav-burger{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--navy);padding:.25rem .5rem;z-index:901}
+@media(max-width:900px){
+  .nav-burger{display:block}
+  .nav-links.open{display:flex!important;position:fixed;inset:0;background:rgba(244,242,238,.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:900}
+  .nav-links.open a{font-size:1.1rem;color:var(--navy)!important;opacity:1!important}
+}
+@media(max-width:900px){
+  .case-wrap{grid-template-columns:1fr!important}
+  .case-wrap.flip{direction:ltr!important}
+  .case-img{min-height:220px}
+  .ind-grid{grid-template-columns:repeat(2,1fr)!important}
+  .h-stat-row{flex-wrap:wrap;gap:1.5rem}
+  .footer-top{grid-template-columns:1fr 1fr!important}
+  .footer-cols{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:560px){
+  .ind-grid{grid-template-columns:1fr!important}
+  .footer-top{grid-template-columns:1fr!important}
+  .footer-cols{grid-template-columns:1fr!important}
+}
+
+.nav-logo-img{height:24px;width:auto;display:block}
+.nav:not(.sc) .nav-logo-img{filter:brightness(0) invert(1)}
+.nav.sc .nav-logo-img{filter:none}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.svg" alt="Saicon" class="nav-logo-img" height="24" style="display:block"></a>
+  <div class="nav-links">
+    <a href="studios/tech-overview.html">Studios</a>
+    <a href="platforms.html">Platforms</a>
+    <a href="client-success.html" class="active">Client Success</a>
+    <a href="#">Insights</a>
+    <a href="about.html">About</a>
+    <a href="#">Careers</a>
+    <a href="mailto:hello@saicon.com" class="nav-cta">Talk to a Studio Expert</a>
+  </div>
+  <button class="nav-burger" id="navBurger" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="blob blob-1" style="background:rgba(196,144,42,.6);top:-10%;right:10%"></div>
+  <div class="blob blob-2" style="background:rgba(12,18,32,.9);bottom:-10%;left:5%"></div>
+  <div class="blob blob-3" style="background:rgba(0,150,100,.45);top:50%;right:25%"></div>
+
+  <!-- Decorative arrow -->
+  <div class="hero-deco" aria-hidden="true">
+    <svg viewBox="0 0 440 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M35 22 L220 22 L418 240 L220 458 L35 458 L205 240 Z"
+        fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      <path d="M80 60 L220 60 L380 240 L220 420 L80 420 L220 240 Z"
+        fill="none" stroke="rgba(196,144,42,.12)" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-eye">Client Success</div>
+    <h1 class="hero-h">Outcomes,<br>not slide decks.</h1>
+    <p class="hero-p">Twelve Phase-1 enterprise clients. Twenty-three documented case outcomes. Measured in working capital recovered, error rates eliminated, and processing time cut — not satisfaction scores.</p>
+
+    <div class="hero-stat-row">
+      <div class="h-stat">
+        <div class="h-stat-n">80+</div>
+        <div class="h-stat-l">Active clients</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">$50M+</div>
+        <div class="h-stat-l">Working capital impact</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">23</div>
+        <div class="h-stat-l">Documented outcomes</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">F500</div>
+        <div class="h-stat-l">Track record</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENT LOGOS ═══════════════════════════════════════ -->
+<section class="logos-sec rv">
+  <div class="logos-label">Phase-1 Enterprise Clients</div>
+  <div class="logos-track">
+    <span class="logo-badge">AT&amp;T</span>
+    <span class="logo-badge">The Home Depot</span>
+    <span class="logo-badge">Morgan Stanley</span>
+    <span class="logo-badge">Cigna</span>
+    <span class="logo-badge">Chick-fil-A</span>
+    <span class="logo-badge">ADP</span>
+    <span class="logo-badge">Walmart</span>
+    <span class="logo-badge">Aligned Data Centers</span>
+    <span class="logo-badge">Trinity Industries</span>
+    <span class="logo-badge">Saks Fifth Avenue</span>
+    <span class="logo-badge">UnitedHealth Group</span>
+    <span class="logo-badge">Veolia</span>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY 1: PET FOOD DISTRIBUTOR ════════════════ -->
+<section class="case-sec" id="case-1">
+  <div class="case-index">01</div>
+  <div class="case-wrap rv">
+    <div class="case-left">
+      <div class="case-tag">Legacy Modernization · Data &amp; AI</div>
+      <h2 class="case-h">20M+ order lines modernized. 50% cost savings.</h2>
+      <div class="case-block">
+        <div class="case-block-label">The Challenge</div>
+        <p class="case-block-body">A major US pet food distributor ran critical O2C operations on AS/400 — a platform approaching end-of-support with a 3-day order-to-fulfillment cycle, 20M+ annual order lines, and growing error rates.</p>
+      </div>
+      <div class="case-block">
+        <div class="case-block-label">The Solution</div>
+        <p class="case-block-body">Saicon modernized the AS/400 to a templatized, cloud-aligned O2C process. Simultaneously deployed Ascent for real-time operational intelligence — live AR dashboards showing $23.6M in receivables, inventory accuracy tracking, and supply chain KPIs.</p>
+      </div>
+    </div>
+    <div class="case-right rv rv-d1">
+      <div class="results-card">
+        <div class="results-title">Documented Results</div>
+        <div class="results-list">
+          <div class="r-item">
+            <div class="r-val">50%</div>
+            <div class="r-label">Cost savings achieved</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">3→1 day</div>
+            <div class="r-label">Order-to-fulfillment cycle</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">89%</div>
+            <div class="r-label">Error rate reduction</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">99.9%</div>
+            <div class="r-label">Inventory accuracy</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">$23.6M</div>
+            <div class="r-label">Live AR dashboard visibility</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY 2: FINANCE SHARED SERVICES GCC ════════ -->
+<section class="case-sec" id="case-2">
+  <div class="case-index">02</div>
+  <div class="case-wrap flip rv">
+    <div class="case-left">
+      <div class="case-tag">GCC &amp; Global Delivery</div>
+      <h2 class="case-h">$50M+ working capital impact in 5 months.</h2>
+      <div class="case-block">
+        <div class="case-block-label">The Challenge</div>
+        <p class="case-block-body">An enterprise client needed to establish a Finance Shared Services capability center for O2C, P2P, and Treasury — from zero, in under 6 months, with named SLAs from day one.</p>
+      </div>
+      <div class="case-block">
+        <div class="case-block-label">The Solution</div>
+        <p class="case-block-body">Saicon deployed its 5-phase GCC methodology: Foundation → Ramp → Capability → Readiness → Go-Live. HR, IT, real estate, and governance stood up in parallel. Multi-tower from day one.</p>
+      </div>
+    </div>
+    <div class="case-right rv rv-d1">
+      <div class="results-card">
+        <div class="results-title">Documented Results</div>
+        <div class="results-list">
+          <div class="r-item">
+            <div class="r-val">$50M+</div>
+            <div class="r-label">Working capital impact</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">98%+</div>
+            <div class="r-label">Transaction accuracy</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">99.9%</div>
+            <div class="r-label">SLA governance</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">5 mo</div>
+            <div class="r-label">Zero-to-operational deployment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY 3: VTAF WEBSHOP ════════════════════════ -->
+<section class="case-sec" id="case-3">
+  <div class="case-index">03</div>
+  <div class="case-wrap rv">
+    <div class="case-left">
+      <div class="case-tag">Quality Engineering · VTAF</div>
+      <h2 class="case-h">97% of manual test execution eliminated.</h2>
+      <div class="case-block">
+        <div class="case-block-label">The Challenge</div>
+        <p class="case-block-body">A global e-commerce platform operated a large manual QA function. As release velocity demands increased, the cost and cycle time of manual testing became a competitive constraint.</p>
+      </div>
+      <div class="case-block">
+        <div class="case-block-label">The Solution</div>
+        <p class="case-block-body">VTAF deployed with AI-generated test scripts. OpenAI generates scripts from plain-text acceptance criteria. Handles UI drift automatically. Azure CI/CD integration means tests run on every commit.</p>
+      </div>
+    </div>
+    <div class="case-right rv rv-d1">
+      <div class="results-card">
+        <div class="results-title">Documented Results</div>
+        <div class="results-list">
+          <div class="r-item">
+            <div class="r-val">97%</div>
+            <div class="r-label">Manual execution eliminated</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">88%</div>
+            <div class="r-label">Test pass rate maintained</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">75%</div>
+            <div class="r-label">Effort savings delivered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY 4: EUROPEAN AR & BILLING ═══════════════ -->
+<section class="case-sec" id="case-4">
+  <div class="case-index">04</div>
+  <div class="case-wrap flip rv">
+    <div class="case-left">
+      <div class="case-tag">GCC &amp; Global Delivery · Finance</div>
+      <h2 class="case-h">&euro;70M AR. &euro;250M billed. 35-day DSO.</h2>
+      <div class="case-block">
+        <div class="case-block-label">The Challenge</div>
+        <p class="case-block-body">A European enterprise had fragmented AR and billing operations across 40+ accounts — manual processes, high aged debt (21%), and limited cash visibility across the portfolio.</p>
+      </div>
+      <div class="case-block">
+        <div class="case-block-label">The Solution</div>
+        <p class="case-block-body">Saicon's F&amp;A Shared Services model — O2C, AR management, billing governance — unified under one delivery framework with ERP integration (SAP, Sage Intacct) and daily cash visibility dashboards.</p>
+      </div>
+    </div>
+    <div class="case-right rv rv-d1">
+      <div class="results-card">
+        <div class="results-title">Documented Results</div>
+        <div class="results-list">
+          <div class="r-item">
+            <div class="r-val">&euro;70M</div>
+            <div class="r-label">AR under active management</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">&euro;250M+</div>
+            <div class="r-label">Billed annually</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">35 days</div>
+            <div class="r-label">Days Sales Outstanding</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">21→7%</div>
+            <div class="r-label">Aged debt reduction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY 5: RETAIL PIM/DAM ══════════════════════ -->
+<section class="case-sec" id="case-5">
+  <div class="case-index">05</div>
+  <div class="case-wrap rv">
+    <div class="case-left">
+      <div class="case-tag">Legacy Modernization · Retail</div>
+      <h2 class="case-h">3,500+ products onboarded annually. 2 weeks &rarr; 3 days.</h2>
+      <div class="case-block">
+        <div class="case-block-label">The Challenge</div>
+        <p class="case-block-body">A retail merchandising operation relied on an AS/400 system for product data management. New product onboarding took 2+ weeks, supplier data was inconsistent, and content quality was limiting sales performance.</p>
+      </div>
+      <div class="case-block">
+        <div class="case-block-label">The Solution</div>
+        <p class="case-block-body">Saicon modernized the PIM/DAM system with AS/400-to-Salesforce sync, automated supplier data onboarding, and real-time content quality scoring across 10+ supplier integrations.</p>
+      </div>
+    </div>
+    <div class="case-right rv rv-d1">
+      <div class="results-card">
+        <div class="results-title">Documented Results</div>
+        <div class="results-list">
+          <div class="r-item">
+            <div class="r-val">3,500+</div>
+            <div class="r-label">Products onboarded per year</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">2wk→3d</div>
+            <div class="r-label">Onboarding cycle time</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">40%+</div>
+            <div class="r-label">Content quality lift</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">10+</div>
+            <div class="r-label">Supplier integrations live</div>
+          </div>
+          <div class="r-item">
+            <div class="r-val">24/5</div>
+            <div class="r-label">Sustained operations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INDUSTRIES ══════════════════════════════════════════ -->
+<section class="industries-sec">
+  <div class="ind-header rv">
+    <div class="sec-eye" style="justify-content:center;margin-bottom:1rem">Industries Served</div>
+    <p style="font-size:.9rem;color:var(--text-m);line-height:1.7">Outcomes delivered across the enterprise landscape — not limited to one vertical, one geography, or one technology stack.</p>
+  </div>
+  <div class="ind-grid rv rv-d1">
+    <div class="ind-item">Retail &amp; Commerce</div>
+    <div class="ind-item">Manufacturing &amp; Industrial</div>
+    <div class="ind-item">Logistics &amp; Transportation</div>
+    <div class="ind-item">Technology &amp; SaaS</div>
+    <div class="ind-item">Financial Services</div>
+    <div class="ind-item">Healthcare</div>
+    <div class="ind-item">Beverage &amp; CPG</div>
+    <div class="ind-item">Energy &amp; Utilities</div>
+  </div>
+</section>
+
+<!-- ═══ CTA ══════════════════════════════════════════════════ -->
+<section class="cta-sec">
+  <div class="blob blob-1" style="background:rgba(196,144,42,.3);top:-20%;left:-5%"></div>
+  <div class="blob blob-2" style="background:rgba(0,150,100,.2);bottom:-15%;right:0%"></div>
+  <div style="position:relative;z-index:2">
+    <div class="cta-eye">Your outcome, next</div>
+    <h2 class="cta-h">Ready to add your case study?</h2>
+    <p class="cta-sub">Talk to a studio expert about your current challenge. We'll tell you honestly whether we've solved it before — and show you the outcome if we have.</p>
+    <a href="mailto:hello@saicon.com" class="btn-pri" style="font-size:1rem;padding:1rem 2.2rem">Talk to a Studio Expert</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="f-logo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M1 1 L10 1 L18 10 L10 19 L1 19 L9 10 Z" fill="#C4902A"/>
+        </svg>
+        Sai<b>con</b>
+      </div>
+      <p class="footer-tag">Technology Artisans. 80+ active clients. Outcomes documented.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Studios</div>
+        <a href="studios/modernization.html">Modernization</a>
+        <a href="studios/quality-engineering.html">Quality Engineering</a>
+        <a href="studios/application-dev.html">Digital Product</a>
+        <a href="studios/data-ai.html">Data &amp; AI</a>
+        <a href="studios/cloud-infra.html">Cloud &amp; Security</a>
+        <a href="studios/gcc.html">GCC &amp; Delivery</a>
+        <a href="studios/talent.html">Talent Solutions</a>
+        <a href="studios/tech-overview.html#saicon-ai">Saicon AI</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platforms</div>
+        <a href="platforms.html#fusion">Fusion</a>
+        <a href="platforms.html#redemption">Redemption</a>
+        <a href="platforms.html#vtaf">VTAF</a>
+        <a href="platforms.html#vidur">VIDUR</a>
+        <a href="platforms.html#ascent">Ascent</a>
+        <a href="platforms.html#spark">SPARK</a>
+        <a href="platforms.html#engage">Engage</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Saicon</a>
+        <a href="client-success.html">Client Success</a>
+        <a href="#">Insights</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <a href="mailto:hello@saicon.com">hello@saicon.com</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Saicon. Technology Artisans.</span>
+    <span>Privacy Policy &nbsp;·&nbsp; Terms of Use</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll behaviour
+const nav = document.getElementById('nav');
+if(nav){ window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>30),{passive:true}); }
+var burger=document.getElementById('navBurger');
+if(burger){burger.addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('open');});}
+
+// IntersectionObserver for reveal animations
+const ro = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('iv'); ro.unobserve(e.target); } });
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

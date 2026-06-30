@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Saicon – Technology Artisans</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{font-size:18px}
+:root{
+  --bg:#F4F2EE;--bg-2:#FFFFFF;--bg-3:#EAE7E0;
+  --navy:#1A2456;--navy-2:#0C1220;--navy-l:#2E3F7A;
+  --gold:#C4902A;--gold-l:#E8C56A;
+  --text:#0D1225;--text-m:rgba(13,18,37,.55);--text-d:rgba(13,18,37,.30);
+  --border:rgba(13,18,37,.08);--border-s:rgba(13,18,37,.04);
+  --ease-s:cubic-bezier(.19,1,.22,1);
+  --fh:'Plus Jakarta Sans',sans-serif;--fb:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:1rem;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:70px;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-img{height:24px;width:auto;display:block}
+.nav:not(.sc) .nav-logo-img{filter:brightness(0) invert(1)}
+.nav.sc .nav-logo-img{filter:none}
+.nav-links{display:flex;gap:2.25rem;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:rgba(255,255,255,.72);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:#fff;font-weight:600}
+.nav-cta{padding:.52rem 1.2rem!important;background:var(--gold)!important;color:#fff!important;border-radius:6px;font-weight:600!important;font-size:.82rem!important}
+.nav-cta:hover{background:var(--gold-l)!important;color:var(--navy)!important}
+.nav.sc{background:rgba(244,242,238,.96);backdrop-filter:blur(14px);border-color:var(--border);box-shadow:0 1px 20px rgba(13,18,37,.06)}
+.nav.sc .nav-links a{color:var(--text);opacity:.65}
+.nav.sc .nav-links a:hover,.nav.sc .nav-links a.active{opacity:1;color:var(--navy)}
+.nav-burger{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:rgba(255,255,255,.85);padding:.25rem .5rem;z-index:901}
+.nav.sc .nav-burger{color:var(--navy)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s var(--ease-s)}
+.rv.iv{opacity:1;transform:none}
+
+/* ═══════════════════════════════════════
+   HERO — 2-col, arrow-mark right
+═══════════════════════════════════════ */
+.hero{min-height:100vh;padding:110px 3rem 70px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;position:relative;overflow:hidden;background:#1A2456}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(196,144,42,.07) 0%,transparent 50%),linear-gradient(220deg,rgba(255,255,255,.03) 0%,transparent 60%);z-index:0}
+.hero-left{position:relative;z-index:2}
+.hero-eye{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero-eye::before{content:'';width:22px;height:2px;background:var(--gold)}
+.hero-h{font-family:var(--fh);font-size:clamp(2.6rem,5.5vw,4.6rem);font-weight:800;letter-spacing:-.05em;line-height:1.04;color:#fff;margin-bottom:1.4rem}
+.hero-h em{font-style:normal;color:var(--gold-l)}
+.hero-p{font-size:1rem;color:rgba(255,255,255,.72);max-width:440px;line-height:1.8;margin-bottom:2rem}
+.hero-certs{display:flex;flex-wrap:wrap;gap:.5rem}
+.hero-cert{font-size:.72rem;font-weight:500;padding:.28rem .85rem;border:1px solid rgba(255,255,255,.22);border-radius:100px;color:rgba(255,255,255,.72);background:rgba(255,255,255,.06)}
+
+/* Hero right: arrow mark */
+.hero-right{position:relative;height:62vh;min-height:420px;z-index:1}
+.hero-mark{position:absolute;right:0;top:50%;transform:translateY(-50%);width:75%;height:90%}
+.hero-mark-imgs{position:absolute;inset:0;clip-path:polygon(8% 5%,52% 5%,94% 50%,52% 95%,8% 95%,46% 50%);overflow:hidden}
+.hm-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.hm-img.on{opacity:1}
+.hero-mark-frame{position:absolute;inset:0;pointer-events:none}
+.hero-rect{width:110px;height:160px;background:rgba(196,144,42,.22);left:0;top:50%;transform:translateY(-50%);z-index:1;position:absolute;clip-path:polygon(0 0,100% 0,88% 100%,0 100%)}
+
+/* STATS BAR */
+.stats{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);padding:0 3rem}
+.stat{padding:2.25rem 1.75rem;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--fh);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.05em;color:var(--navy)}
+.stat-l{font-size:.82rem;color:var(--text-m);letter-spacing:.04em;margin-top:.3rem}
+
+/* ═══════════════════════════════════════
+   STORY ARC — 400vh, adapted SAI arc
+═══════════════════════════════════════ */
+.st-sec{background:var(--navy-2);position:relative;overflow:clip}
+.st-sec::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 95% 5%,rgba(196,144,42,.08) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 5% 95%,rgba(44,49,142,.18) 0%,transparent 55%)}
+.st-scroll{height:500vh;position:relative}
+.st-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.st-hd{padding:1.5rem 3rem;flex-shrink:0;display:flex;align-items:center;gap:3.5rem;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(12,18,32,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:relative;z-index:5}
+.st-hd-eye{font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.st-hd-eye::before,.st-hd-eye::after{content:'';width:20px;height:1.5px;background:var(--gold)}
+.st-hd-h{font-family:var(--fh);font-size:clamp(1.3rem,2.2vw,1.85rem);font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1.1}
+.st-hd-h em{font-style:normal;color:var(--gold-l)}
+.st-hd-sub{font-size:.88rem;color:rgba(255,255,255,.32);line-height:1.65;max-width:280px;flex-shrink:0}
+.st-body{flex:1;display:grid;grid-template-columns:1fr 440px;min-height:0;position:relative;z-index:2}
+
+/* Arc wheel */
+.st-arc-left{display:flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;position:relative}
+.st-wheel-wrap{position:relative;width:min(980px,100%);aspect-ratio:640/490;max-height:calc(100% - .5rem)}
+.st-wheel-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.st-hub{position:absolute;left:50%;top:76.2%;transform:translate(-50%,-50%);width:124px;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;background:rgba(6,13,31,.97);border:2px solid rgba(196,144,42,.48);border-radius:50%;z-index:10;text-align:center;box-shadow:0 0 0 6px rgba(196,144,42,.08),0 0 0 14px rgba(196,144,42,.04)}
+.st-hub-lbl{font-family:var(--fh);font-size:1rem;font-weight:800;letter-spacing:.04em;color:var(--gold);line-height:1.1}
+.st-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.55rem;cursor:pointer;z-index:5}
+.st-node-img{width:114px;height:114px;border-radius:16px;overflow:hidden;position:relative;border:2px solid rgba(255,255,255,.14);transition:all .45s var(--ease-s)}
+.st-node-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .4s ease}
+.st-node.on .st-node-img{border-color:var(--gold);box-shadow:0 0 0 4px rgba(196,144,42,.22),0 6px 32px rgba(196,144,42,.32);transform:scale(1.1)}
+.st-node-lbl{font-family:var(--fh);font-size:.8rem;font-weight:600;color:rgba(255,255,255,.22);text-align:center;max-width:100px;line-height:1.35;transition:color .35s;letter-spacing:.02em}
+.st-node.on .st-node-lbl{color:rgba(255,255,255,.92)}
+.st-conn{transition:stroke .4s ease,stroke-opacity .4s ease}
+
+/* Arc right panels */
+.st-arc-right{position:relative;border-left:1px solid rgba(255,255,255,.07);padding:0;display:flex;align-items:center;overflow:hidden}
+.st-arc-bg{position:absolute;inset:0;z-index:0}
+.st-arc-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .65s ease;filter:brightness(.18) saturate(.55)}
+.st-arc-bg-img.on{opacity:1}
+.st-arc-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--navy-2) 0%,rgba(12,18,32,.8) 55%,rgba(12,18,32,.72) 100%)}
+.st-detail{position:absolute;left:0;right:0;padding:2.5rem 3rem;opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .48s var(--ease-s);pointer-events:none;z-index:2}
+.st-detail.on{opacity:1;transform:none;pointer-events:auto}
+.st-dt-step{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;opacity:.85}
+.st-dt-h{font-family:var(--fh);font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800;letter-spacing:-.05em;color:#fff;line-height:1.05;margin-bottom:.25rem}
+.st-dt-h em{font-style:normal;color:var(--gold-l);font-size:.6em;font-weight:600;display:block;margin-top:.2rem;opacity:.85;letter-spacing:-.01em}
+.st-dt-rule{width:42px;height:2px;background:var(--gold);margin:.9rem 0}
+.st-dt-body{font-size:.95rem;color:rgba(255,255,255,.48);line-height:1.72;margin-bottom:1.2rem}
+.st-dt-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.st-dt-metric{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:.75rem 1rem}
+.st-dt-mn{font-family:var(--fh);font-size:1.85rem;font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1}
+.st-dt-ml{font-size:.78rem;color:rgba(255,255,255,.28);margin-top:.25rem;line-height:1.35;font-weight:500}
+
+/* ═══════════════════════════════════════
+   PRINCIPLES — 300vh, VS-style morphing shape
+═══════════════════════════════════════ */
+.pr-scroll{height:300vh;position:relative}
+.pr-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 480px;overflow:hidden}
+.pr-left{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,rgba(6,13,31,1) 0%,rgba(10,18,44,1) 100%)}
+.pr-ghost{position:absolute;bottom:-3rem;left:-1rem;font-family:var(--fh);font-size:clamp(7rem,13vw,16rem);font-weight:800;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.05);pointer-events:none;user-select:none;line-height:1;white-space:nowrap}
+.pr-shape-wrap{position:relative;width:320px;height:400px;z-index:2}
+.pr-shape-wrap::before{content:'';position:absolute;inset:-24px;background:radial-gradient(ellipse 85% 85% at 50% 50%,rgba(196,144,42,.09) 0%,transparent 70%);pointer-events:none;z-index:0}
+.pr-shape-clip{position:absolute;inset:0;overflow:hidden;transition:clip-path .95s var(--ease-s)}
+.pr-shape-clip img{position:absolute;top:-12%;left:-12%;width:124%;height:124%;object-fit:cover;transition:filter .6s ease}
+.pr-shape-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:3}
+.pr-frame-path{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.5;stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 1.4s var(--ease-s),stroke .5s ease}
+.pr-frame-path.on{stroke-dashoffset:0;stroke:rgba(196,144,42,.48)}
+.pr-frame-inner{fill:none;stroke:rgba(196,144,42,.12);stroke-width:1;stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 1.8s var(--ease-s) .15s}
+.pr-frame-inner.on{stroke-dashoffset:0}
+.pr-counter{position:absolute;bottom:2rem;left:3rem;font-family:var(--fh);font-size:.70rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);z-index:5}
+.pr-count-total{opacity:.4}
+
+/* Right panel */
+.pr-right{position:relative;border-left:1px solid rgba(255,255,255,.07);overflow:hidden;background:var(--navy-2)}
+.pr-right::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 100% 60% at 100% 5%,rgba(196,144,42,.09) 0%,transparent 55%),radial-gradient(ellipse 70% 80% at 0% 100%,rgba(44,49,142,.22) 0%,transparent 60%)}
+.pr-panel{position:absolute;inset:0;padding:3rem 3rem 3rem 3.5rem;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(22px);pointer-events:none;transition:opacity .5s ease,transform .65s var(--ease-s)}
+.pr-panel.on{opacity:1;transform:none;pointer-events:auto}
+.pr-p-eye{font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.pr-p-h{font-family:var(--fh);font-size:clamp(1.7rem,2.5vw,2.4rem);font-weight:800;letter-spacing:-.05em;color:#fff;line-height:1.08;margin-bottom:.75rem}
+.pr-p-rule{width:0;height:2px;background:var(--gold);margin-bottom:1.2rem;transition:width .55s var(--ease-s) .3s}
+.pr-panel.on .pr-p-rule{width:42px}
+.pr-p-body{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.72;margin-bottom:1.4rem}
+.pr-p-stat{display:inline-flex;flex-direction:column;gap:.28rem;padding:1.2rem 1.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px}
+.pr-p-stat-n{font-family:var(--fh);font-size:2.1rem;font-weight:800;letter-spacing:-.05em;color:var(--gold-l);line-height:1}
+.pr-p-stat-l{font-size:.78rem;color:rgba(255,255,255,.3);margin-top:.2rem;line-height:1.4}
+.pr-dots{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.7rem;z-index:10}
+.pr-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.22);border:none;padding:0;cursor:pointer;transition:background .3s,transform .3s}
+.pr-dot.on{background:var(--gold);transform:scale(1.6)}
+
+/* ═══════════════════════════════════════
+   SCALE — 4 platform metrics, light bg
+═══════════════════════════════════════ */
+.scale-sec{padding:7rem 3rem;background:var(--bg);border-top:1px solid var(--border)}
+.scale-inner{max-width:1100px;margin:0 auto}
+.scale-eye{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:.75rem}
+.scale-hd{font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em;color:var(--navy-2);text-align:center;line-height:1.1;margin-bottom:.75rem}
+.scale-sub{font-size:.95rem;color:var(--text-m);text-align:center;max-width:480px;margin:0 auto 3.5rem;line-height:1.75}
+.scale-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg-2)}
+.scale-item{padding:2.75rem 2rem;border-right:1px solid var(--border);position:relative}
+.scale-item:last-child{border-right:none}
+.scale-n{font-family:var(--fh);font-size:clamp(2rem,3.2vw,2.8rem);font-weight:800;color:var(--navy);letter-spacing:-.05em;line-height:1;margin-bottom:.45rem}
+.scale-n span{color:var(--gold)}
+.scale-l{font-size:.82rem;color:var(--text-m);line-height:1.5}
+.scale-plat{display:block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-d);margin-top:.5rem}
+.scale-bar{height:2px;background:var(--gold);border-radius:2px;margin-top:1.2rem;width:0;transition:width .8s var(--ease-s)}
+.scale-bar.counted{width:32px}
+
+/* CLIENT MARQUEE */
+.mq-sec{padding:3.5rem 0;background:var(--bg-3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
+.mq-label{font-size:.70rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-d);text-align:center;margin-bottom:1.5rem}
+.mq-wrap{overflow:hidden;position:relative}
+.mq-wrap::before,.mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:5rem;z-index:2;pointer-events:none}
+.mq-wrap::before{left:0;background:linear-gradient(to right,var(--bg-3),transparent)}
+.mq-wrap::after{right:0;background:linear-gradient(to left,var(--bg-3),transparent)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track{display:flex;animation:marquee 34s linear infinite;width:max-content}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{display:inline-flex;align-items:center;gap:1.5rem;padding:0 2rem;white-space:nowrap;font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--text-m);letter-spacing:-.02em}
+.mq-sep{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.5;flex-shrink:0}
+
+/* CTA */
+.cta-sec{padding:8rem 3rem;background:var(--navy);text-align:center;position:relative;overflow:hidden}
+.cta-sec::before,.cta-sec::after{content:'';position:absolute;clip-path:polygon(8% 0%,100% 0%,92% 100%,0% 100%);background:rgba(196,144,42,.09)}
+.cta-sec::before{width:48%;aspect-ratio:3/1;top:-6%;left:-8%}
+.cta-sec::after{width:48%;aspect-ratio:3/1;bottom:-6%;right:-8%;transform:scaleX(-1)}
+.cta-in{position:relative;z-index:2;max-width:560px;margin:0 auto}
+.cta-eye{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.cta-h{font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1.1;margin-bottom:1.1rem}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.58);line-height:1.75;margin-bottom:2rem}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;background:var(--gold);color:#fff;font-family:var(--fh);font-size:.92rem;font-weight:700;border-radius:7px;transition:background .2s,transform .18s}
+.btn-gold:hover{background:var(--gold-l);color:var(--navy);transform:translateY(-2px)}
+
+/* FOOTER */
+.foot{background:var(--navy-2);padding:4.5rem 3rem 2.5rem;border-top:1px solid rgba(255,255,255,.06)}
+.foot-inner{max-width:1160px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.foot-nm{font-family:var(--fh);font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:.35rem;letter-spacing:-.03em}
+.foot-nm b{color:var(--gold-l)}
+.foot-tag{font-size:.78rem;color:rgba(255,255,255,.3)}
+.foot-col-tt{font-size:.70rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.foot-col ul li a{font-size:.88rem;color:rgba(255,255,255,.4);transition:color .2s}
+.foot-col ul li a:hover{color:var(--gold-l)}
+.foot-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:1.75rem;text-align:center}
+.foot-copy{font-size:.75rem;color:rgba(255,255,255,.2)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .st-body{grid-template-columns:1fr}
+  .st-arc-right{display:none}
+  .pr-sticky{grid-template-columns:1fr}
+  .pr-left{display:none}
+  .scale-grid{grid-template-columns:repeat(2,1fr)}
+  .scale-item:nth-child(2){border-right:none}
+  .foot-top{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:860px){
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-burger{display:block}
+  .nav-links.open{display:flex!important;position:fixed;inset:0;background:rgba(244,242,238,.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:900}
+  .nav-links.open a{font-size:1.1rem;color:var(--navy)!important;opacity:1!important}
+  .hero{grid-template-columns:1fr;padding:110px 1.5rem 4rem}
+  .hero-right{display:none}
+  .stats{grid-template-columns:1fr 1fr;padding:0 1.5rem}
+  .stat:nth-child(2){border-right:none}
+  .st-hd{flex-direction:column;gap:1rem;align-items:flex-start;padding:1.5rem}
+  .scale-sec{padding:4rem 1.5rem}
+  .cta-sec{padding:5rem 1.5rem}
+  .foot{padding:3rem 1.5rem 2rem}
+  .foot-top{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="index.html"><img src="logo.svg" alt="Saicon" class="nav-logo-img" height="24" style="display:block"></a>
+  <div class="nav-links" id="navLinks">
+    <a href="studios/tech-overview.html">Studios</a>
+    <a href="platforms.html">Platforms</a>
+    <a href="client-success.html">Client Success</a>
+    <a href="#">Insights</a>
+    <a href="about.html" class="active">About</a>
+    <a href="#">Careers</a>
+    <a href="mailto:hello@saicon.com" class="nav-cta">Talk to a Studio Expert</a>
+  </div>
+  <button class="nav-burger" id="navBurger">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-eye">About Saicon</div>
+    <h1 class="hero-h">Twenty-five years of<br><em>technology artisanship.</em></h1>
+    <p class="hero-p">Built by practitioners who stayed on after go-live. Seven specialist studios — each a permanent centre of excellence — with AI woven through every delivery and accountability measured in outcomes, not hours.</p>
+    <div class="hero-certs">
+      <span class="hero-cert">WBE &middot; MBE Certified</span>
+      <span class="hero-cert">ISO 27001</span>
+      <span class="hero-cert">SOC 2 Type II</span>
+      <span class="hero-cert">F500 Track Record</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-rect"></div>
+    <div class="hero-mark">
+      <div class="hero-mark-imgs">
+        <img class="hm-img on" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=700&q=80&auto=format&fit=crop" alt="Saicon team">
+        <img class="hm-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=700&q=80&auto=format&fit=crop" alt="Studio space">
+        <img class="hm-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=700&q=80&auto=format&fit=crop" alt="Engineering delivery">
+      </div>
+      <svg class="hero-mark-frame" viewBox="0 0 480 560" fill="none">
+        <path d="M 30 24 L 248 24 L 456 280 L 248 536 L 30 536 L 238 280 Z" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+        <path d="M 56 52 L 248 52 L 420 280 L 248 508 L 56 508 L 218 280 Z" stroke="rgba(196,144,42,.35)" stroke-width="1" opacity=".6"/>
+        <circle cx="456" cy="280" r="5" fill="#C4902A" opacity=".7"/>
+        <circle cx="30" cy="24" r="3" fill="rgba(255,255,255,.4)"/>
+        <circle cx="30" cy="536" r="3" fill="rgba(255,255,255,.4)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Years of engineering depth</div></div>
+  <div class="stat"><div class="stat-n">1,500+</div><div class="stat-l">Studio professionals</div></div>
+  <div class="stat"><div class="stat-n">80+</div><div class="stat-l">Enterprise accounts</div></div>
+  <div class="stat"><div class="stat-n">F500</div><div class="stat-l">Fortune 500 track record</div></div>
+</div>
+
+<!-- STORY ARC -->
+<section class="st-sec">
+  <div class="st-scroll" id="stScroll">
+    <div class="st-sticky">
+      <div class="st-hd">
+        <div>
+          <div class="st-hd-eye">Our Story</div>
+          <h2 class="st-hd-h">From Atlanta to the <em>edge of enterprise AI.</em></h2>
+        </div>
+        <p class="st-hd-sub">Four milestones. Twenty-five years of delivering technology that runs in production — not just in decks.</p>
+      </div>
+      <div class="st-body">
+
+        <!-- Arc wheel -->
+        <div class="st-arc-left">
+          <div class="st-wheel-wrap" id="stWheel">
+            <svg class="st-wheel-svg" viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="stHubGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(196,144,42,.18)"/>
+                  <stop offset="100%" stop-color="rgba(196,144,42,0)"/>
+                </radialGradient>
+              </defs>
+              <circle cx="320" cy="320" r="90" fill="url(#stHubGlow)"/>
+              <path d="M 68 215 A 268 235 0 0 1 572 215" fill="none" stroke="rgba(196,144,42,.30)" stroke-width="1.5" stroke-dasharray="8 16"/>
+              <line x1="320" y1="320" x2="68" y2="215" stroke="rgba(196,144,42,.1)" stroke-width="1" stroke-dasharray="4 10" class="st-conn" data-n="0"/>
+              <line x1="320" y1="320" x2="196" y2="96" stroke="rgba(196,144,42,.1)" stroke-width="1" stroke-dasharray="4 10" class="st-conn" data-n="1"/>
+              <line x1="320" y1="320" x2="444" y2="96" stroke="rgba(196,144,42,.1)" stroke-width="1" stroke-dasharray="4 10" class="st-conn" data-n="2"/>
+              <line x1="320" y1="320" x2="572" y2="215" stroke="rgba(196,144,42,.1)" stroke-width="1" stroke-dasharray="4 10" class="st-conn" data-n="3"/>
+            </svg>
+            <!-- Hub -->
+            <div class="st-hub">
+              <svg width="20" height="24" viewBox="0 0 38 42" fill="none"><path d="M2 2L19 2L36 21L19 40L2 40L19 21Z" fill="none" stroke="rgba(196,144,42,.9)" stroke-width="1.8"/></svg>
+              <div class="st-hub-lbl" id="stHubLbl">1999</div>
+            </div>
+            <!-- Node 0: 1999 / Atlanta founding — team strategy -->
+            <div class="st-node on" data-n="0" style="left:10.6%;top:51.2%">
+              <div class="st-node-img"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=300&h=300&q=80&auto=format&fit=crop" alt="Saicon founding 1999"></div>
+              <div class="st-node-lbl">Founded<br>1999</div>
+            </div>
+            <!-- Node 1: Fortune 500 / AT&T — enterprise corporate tower -->
+            <div class="st-node" data-n="1" style="left:30.6%;top:22.9%">
+              <div class="st-node-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&h=300&q=80&auto=format&fit=crop" alt="Fortune 500 enterprise"></div>
+              <div class="st-node-lbl">Fortune<br>500 Entry</div>
+            </div>
+            <!-- Node 2: Global delivery — world/earth from orbit -->
+            <div class="st-node" data-n="2" style="left:69.4%;top:22.9%">
+              <div class="st-node-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=300&q=80&auto=format&fit=crop" alt="Global delivery centres"></div>
+              <div class="st-node-lbl">Global<br>Delivery</div>
+            </div>
+            <!-- Node 3: Saicon AI — neural network / AI visual -->
+            <div class="st-node" data-n="3" style="left:89.4%;top:51.2%">
+              <div class="st-node-img"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=300&h=300&q=80&auto=format&fit=crop" alt="Saicon AI"></div>
+              <div class="st-node-lbl">Saicon<br>AI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail panels -->
+        <div class="st-arc-right">
+          <!-- Background images per chapter -->
+          <div class="st-arc-bg">
+            <img class="st-arc-bg-img on" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=900&h=700&q=70&auto=format&fit=crop" alt="" data-bg="0">
+            <img class="st-arc-bg-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&h=700&q=70&auto=format&fit=crop" alt="" data-bg="1">
+            <img class="st-arc-bg-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&h=700&q=70&auto=format&fit=crop" alt="" data-bg="2">
+            <img class="st-arc-bg-img" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&h=700&q=70&auto=format&fit=crop" alt="" data-bg="3">
+          </div>
+          <div class="st-detail on" id="stDetail0">
+            <div class="st-dt-step">01 of 04 &nbsp;&middot;&nbsp; Foundation</div>
+            <div class="st-dt-h">Founded in Atlanta<em>by practitioners, not consultants</em></div>
+            <div class="st-dt-rule"></div>
+            <p class="st-dt-body">Saicon was started by engineers who had run enterprise systems at scale — and watched the gap between consulting decks and delivered outcomes widen for decades. The founding conviction: enterprise technology needs artisans, not generalists. That conviction has not changed in twenty-five years.</p>
+            <div class="st-dt-metrics">
+              <div class="st-dt-metric"><div class="st-dt-mn">Atlanta</div><div class="st-dt-ml">Headquarters, USA</div></div>
+              <div class="st-dt-metric"><div class="st-dt-mn">1999</div><div class="st-dt-ml">Year founded</div></div>
+            </div>
+          </div>
+          <div class="st-detail" id="stDetail1">
+            <div class="st-dt-step">02 of 04 &nbsp;&middot;&nbsp; Enterprise Entry</div>
+            <div class="st-dt-h">First Fortune 500<em>AT&amp;T — then 80 more</em></div>
+            <div class="st-dt-rule"></div>
+            <p class="st-dt-body">The first Fortune 500 engagement established the pattern Saicon repeats across every client: specialist teams that stay on after go-live, SLA-based accountability instead of hourly billing, and zero billing for rework. The model that won AT&amp;T is the model we run today across 80+ accounts.</p>
+            <div class="st-dt-metrics">
+              <div class="st-dt-metric"><div class="st-dt-mn">80+</div><div class="st-dt-ml">Enterprise accounts</div></div>
+              <div class="st-dt-metric"><div class="st-dt-mn">F500</div><div class="st-dt-ml">Including Fortune 500 firms</div></div>
+            </div>
+          </div>
+          <div class="st-detail" id="stDetail2">
+            <div class="st-dt-step">03 of 04 &nbsp;&middot;&nbsp; Global Delivery</div>
+            <div class="st-dt-h">Four cities. One model.<em>US-anchored &middot; India-powered</em></div>
+            <div class="st-dt-rule"></div>
+            <p class="st-dt-body">Atlanta leads every engagement. Three India delivery centres — Nagpur, Nashik, Noida — provide specialist depth at scale, organised by studio discipline rather than headcount tier. The same engineer who scopes your architecture runs it in production. No rotation. No handoff. WBE and MBE certified.</p>
+            <div class="st-dt-metrics">
+              <div class="st-dt-metric"><div class="st-dt-mn">4</div><div class="st-dt-ml">Delivery cities worldwide</div></div>
+              <div class="st-dt-metric"><div class="st-dt-mn">5 mo</div><div class="st-dt-ml">GCC Build-Operate-Transfer</div></div>
+            </div>
+          </div>
+          <div class="st-detail" id="stDetail3">
+            <div class="st-dt-step">04 of 04 &nbsp;&middot;&nbsp; Saicon AI</div>
+            <div class="st-dt-h">Intelligence in every studio<em>embedded, not announced</em></div>
+            <div class="st-dt-rule"></div>
+            <p class="st-dt-body">Saicon AI is not a separate practice, a separate team, or a separate invoice line. It is the intelligence thread woven through all seven studios — accelerating test authoring in VTAF, document processing in VIDUR, and engineering velocity across every pod. The craft remains. The speed changes.</p>
+            <div class="st-dt-metrics">
+              <div class="st-dt-metric"><div class="st-dt-mn">99%</div><div class="st-dt-ml">VIDUR extraction accuracy</div></div>
+              <div class="st-dt-metric"><div class="st-dt-mn">97%</div><div class="st-dt-ml">VTAF test automation</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<div class="pr-scroll" id="prScroll">
+  <div class="pr-sticky">
+    <div class="pr-left">
+      <div class="pr-ghost" id="prGhost">OUTCOMES</div>
+      <div class="pr-shape-wrap">
+        <div class="pr-shape-clip" id="prShapeClip" style="clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)">
+          <img id="prShapeImg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=1100&q=80&auto=format&fit=crop" alt="" style="filter:hue-rotate(0deg) saturate(0.82) brightness(0.86)">
+        </div>
+        <svg class="pr-shape-svg" viewBox="0 0 320 400" preserveAspectRatio="none">
+          <path id="prFramePath" class="pr-frame-path"/>
+          <path id="prFrameInner" class="pr-frame-inner"/>
+        </svg>
+      </div>
+      <div class="pr-counter"><span id="prCountNum">01</span> <span class="pr-count-total">/ 03</span></div>
+    </div>
+    <div class="pr-right">
+      <!-- Principle 0 -->
+      <div class="pr-panel on" id="prPanel0">
+        <div class="pr-p-eye">01 &middot; Principle</div>
+        <h2 class="pr-p-h">Outcomes,<br>not outputs.</h2>
+        <div class="pr-p-rule"></div>
+        <p class="pr-p-body">We contract on SLAs — defect leakage rates, document extraction accuracy, working capital recovered. Not hours delivered. Not bodies placed. If we cannot measure it, we did not deliver it. Our business model only works when yours does.</p>
+        <div class="pr-p-stat">
+          <div class="pr-p-stat-n">$50M+</div>
+          <div class="pr-p-stat-l">Working capital impact documented across Phase-1 clients</div>
+        </div>
+      </div>
+      <!-- Principle 1 -->
+      <div class="pr-panel" id="prPanel1">
+        <div class="pr-p-eye">02 &middot; Principle</div>
+        <h2 class="pr-p-h">Studio model,<br>not consulting model.</h2>
+        <div class="pr-p-rule"></div>
+        <p class="pr-p-body">Studios run as permanent centres of excellence — not assembled per project and disbanded at go-live. The team that scopes your architecture is the team that runs it in production. Depth accumulates. Knowledge does not walk out the door with the engagement.</p>
+        <div class="pr-p-stat">
+          <div class="pr-p-stat-n">25+ yrs</div>
+          <div class="pr-p-stat-l">Permanent studio depth — same discipline, same accountability</div>
+        </div>
+      </div>
+      <!-- Principle 2 -->
+      <div class="pr-panel" id="prPanel2">
+        <div class="pr-p-eye">03 &middot; Principle</div>
+        <h2 class="pr-p-h">Named platforms,<br>not custom builds.</h2>
+        <div class="pr-p-rule"></div>
+        <p class="pr-p-body">Seven production-proven platforms — Fusion, Redemption, VTAF, VIDUR, Ascent, SPARK, Engage — reduce delivery risk and compress timelines. Platforms that have already failed in production once do not fail in yours. Every client benefits from what every previous client found.</p>
+        <div class="pr-p-stat">
+          <div class="pr-p-stat-n">7</div>
+          <div class="pr-p-stat-l">Named platforms in active client production — not demos</div>
+        </div>
+      </div>
+      <div class="pr-dots">
+        <button class="pr-dot on" data-pr="0"></button>
+        <button class="pr-dot" data-pr="1"></button>
+        <button class="pr-dot" data-pr="2"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCALE -->
+<section class="scale-sec">
+  <div class="scale-inner">
+    <div class="scale-eye rv">Platform Performance</div>
+    <h2 class="scale-hd rv">Production metrics. Not projections.</h2>
+    <p class="scale-sub rv">Every number below comes from a live platform running in a client's production environment today.</p>
+    <div class="scale-grid rv" style="transition-delay:.1s">
+      <div class="scale-item" data-target="90">
+        <div class="scale-n"><span class="cnt">90</span><span>K+</span></div>
+        <div class="scale-l">Orders processed per month</div>
+        <span class="scale-plat">Redemption &middot; 4+ yrs live</span>
+        <div class="scale-bar"></div>
+      </div>
+      <div class="scale-item" data-target="99">
+        <div class="scale-n"><span class="cnt">99</span><span>%</span></div>
+        <div class="scale-l">Document extraction accuracy</div>
+        <span class="scale-plat">VIDUR IDP &middot; Production</span>
+        <div class="scale-bar"></div>
+      </div>
+      <div class="scale-item" data-target="97">
+        <div class="scale-n"><span class="cnt">97</span><span>%</span></div>
+        <div class="scale-l">Manual test execution eliminated</div>
+        <span class="scale-plat">VTAF &middot; Quality Engineering</span>
+        <div class="scale-bar"></div>
+      </div>
+      <div class="scale-item" data-target="50">
+        <div class="scale-n">$<span class="cnt">50</span><span>M+</span></div>
+        <div class="scale-l">Working capital impact documented</div>
+        <span class="scale-plat">Phase-1 Enterprise Clients</span>
+        <div class="scale-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT MARQUEE -->
+<section class="mq-sec">
+  <div class="mq-label">Phase-1 Enterprise Clients</div>
+  <div class="mq-wrap">
+    <div class="mq-track">
+      <span class="mq-item">AT&amp;T<span class="mq-sep"></span></span>
+      <span class="mq-item">The Home Depot<span class="mq-sep"></span></span>
+      <span class="mq-item">Morgan Stanley<span class="mq-sep"></span></span>
+      <span class="mq-item">Cigna<span class="mq-sep"></span></span>
+      <span class="mq-item">Chick-fil-A<span class="mq-sep"></span></span>
+      <span class="mq-item">ADP<span class="mq-sep"></span></span>
+      <span class="mq-item">Walmart<span class="mq-sep"></span></span>
+      <span class="mq-item">Aligned Data Centers<span class="mq-sep"></span></span>
+      <span class="mq-item">Trinity Industries<span class="mq-sep"></span></span>
+      <span class="mq-item">Saks Fifth Avenue<span class="mq-sep"></span></span>
+      <span class="mq-item">UnitedHealth Group<span class="mq-sep"></span></span>
+      <span class="mq-item">Veolia<span class="mq-sep"></span></span>
+      <span class="mq-item">AT&amp;T<span class="mq-sep"></span></span>
+      <span class="mq-item">The Home Depot<span class="mq-sep"></span></span>
+      <span class="mq-item">Morgan Stanley<span class="mq-sep"></span></span>
+      <span class="mq-item">Cigna<span class="mq-sep"></span></span>
+      <span class="mq-item">Chick-fil-A<span class="mq-sep"></span></span>
+      <span class="mq-item">ADP<span class="mq-sep"></span></span>
+      <span class="mq-item">Walmart<span class="mq-sep"></span></span>
+      <span class="mq-item">Aligned Data Centers<span class="mq-sep"></span></span>
+      <span class="mq-item">Trinity Industries<span class="mq-sep"></span></span>
+      <span class="mq-item">Saks Fifth Avenue<span class="mq-sep"></span></span>
+      <span class="mq-item">UnitedHealth Group<span class="mq-sep"></span></span>
+      <span class="mq-item">Veolia<span class="mq-sep"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-in rv">
+    <div class="cta-eye">Work with Saicon</div>
+    <h2 class="cta-h">Start with a studio conversation.</h2>
+    <p class="cta-p">No generic decks. No offshore-rate pitches. Tell us what you are trying to solve and we will tell you which studio has done it before — and what it delivered.</p>
+    <a href="mailto:hello@saicon.com" class="btn-gold">Talk to a Studio Expert</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-nm">Sai<b>con</b></div>
+        <div class="foot-tag">Technology Artisans</div>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-tt">Technology Studios</div>
+        <ul>
+          <li><a href="studios/modernization.html">Legacy Modernization</a></li>
+          <li><a href="studios/quality-engineering.html">Quality Engineering</a></li>
+          <li><a href="studios/application-dev.html">Product Engineering</a></li>
+          <li><a href="studios/data-ai.html">Data &amp; AI</a></li>
+          <li><a href="studios/cloud-infra.html">Cloud &amp; Security</a></li>
+          <li><a href="studios/gcc.html">GCC &amp; Global Delivery</a></li>
+          <li><a href="studios/talent.html">Talent Solutions</a></li>
+          <li><a href="studios/tech-overview.html#saicon-ai">Saicon AI</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-tt">Vertical Studios</div>
+        <ul>
+          <li><a href="studios/retail.html">Retail &amp; Commerce</a></li>
+          <li><a href="studios/manufacturing.html">Manufacturing</a></li>
+          <li><a href="studios/logistics.html">Logistics &amp; Transportation</a></li>
+          <li><a href="studios/tech-saas.html">Technology &amp; SaaS</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-tt">Company</div>
+        <ul>
+          <li><a href="about.html">About Saicon</a></li>
+          <li><a href="platforms.html">Platforms</a></li>
+          <li><a href="client-success.html">Client Success</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="mailto:hello@saicon.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p class="foot-copy">&copy; 2026 Saicon Technology Artisans. All rights reserved. &middot; Atlanta, GA &middot; hello@saicon.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* NAV */
+var nav=document.getElementById('nav');
+function syncNav(){if(nav)nav.classList.toggle('sc',window.scrollY>30)}
+window.addEventListener('scroll',syncNav,{passive:true});
+syncNav();
+
+/* BURGER */
+var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
+if(burger&&navLinks)burger.addEventListener('click',function(){navLinks.classList.toggle('open')});
+
+/* REVEAL */
+var rvIO=new IntersectionObserver(function(ents){
+  ents.forEach(function(e){if(e.isIntersecting){e.target.classList.add('iv');rvIO.unobserve(e.target)}});
+},{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){rvIO.observe(el)});
+
+/* HERO IMAGE CYCLE */
+var hmImgs=document.querySelectorAll('.hm-img');
+if(hmImgs.length>1){
+  var hmIdx=0;
+  setInterval(function(){
+    hmImgs[hmIdx].classList.remove('on');
+    hmIdx=(hmIdx+1)%hmImgs.length;
+    hmImgs[hmIdx].classList.add('on');
+  },4000);
+}
+
+/* ══════════════════════════════
+   STORY ARC SCROLL
+══════════════════════════════ */
+var ST_COUNT=4;
+var ST_YEARS=['1999','AT&T','GLOBAL','AI'];
+var stScroll=document.getElementById('stScroll');
+var stNodes=document.querySelectorAll('.st-node');
+var stConns=document.querySelectorAll('.st-conn');
+var stDetails=[];
+for(var i=0;i<ST_COUNT;i++)stDetails.push(document.getElementById('stDetail'+i));
+var stHubLbl=document.getElementById('stHubLbl');
+var stBgImgs=document.querySelectorAll('.st-arc-bg-img');
+var currentSt=0;
+
+function setStory(idx){
+  if(idx===currentSt)return;
+  currentSt=idx;
+  stNodes.forEach(function(n,i){n.classList.toggle('on',i===idx)});
+  stConns.forEach(function(c,i){c.setAttribute('stroke',i===idx?'rgba(196,144,42,.58)':'rgba(196,144,42,.1)')});
+  stDetails.forEach(function(d,i){if(d)d.classList.toggle('on',i===idx)});
+  stBgImgs.forEach(function(img){img.classList.toggle('on',parseInt(img.getAttribute('data-bg'),10)===idx)});
+  if(stHubLbl)stHubLbl.textContent=ST_YEARS[idx];
+}
+function onStScroll(){
+  if(!stScroll)return;
+  var rect=stScroll.getBoundingClientRect();
+  var totalH=stScroll.offsetHeight-window.innerHeight;
+  var scrolled=Math.max(0,Math.min(totalH,-rect.top));
+  var pct=totalH>0?scrolled/totalH:0;
+  var inner=Math.max(0,Math.min(1,(pct-.02)/.96));
+  setStory(Math.min(ST_COUNT-1,Math.round(inner*(ST_COUNT-1))));
+}
+window.addEventListener('scroll',onStScroll,{passive:true});
+onStScroll();
+
+stNodes.forEach(function(node){
+  node.addEventListener('click',function(){
+    var n=parseInt(this.getAttribute('data-n'),10);
+    if(!stScroll)return;
+    var totalH=stScroll.offsetHeight-window.innerHeight;
+    var frac=ST_COUNT>1?n/(ST_COUNT-1):0;
+    window.scrollTo({top:stScroll.offsetTop+frac*totalH*.96+totalH*.02,behavior:'smooth'});
+  });
+});
+
+/* ══════════════════════════════
+   PRINCIPLES SCROLL — VS-style
+══════════════════════════════ */
+var PR_COUNT=3;
+var PR_CLIPS=[
+  'polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)',
+  'polygon(8% 5%,52% 5%,94% 50%,52% 95%,8% 95%,46% 50%)',
+  'polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)'
+];
+var PR_GHOST=['OUTCOMES','STUDIO','PLATFORMS'];
+var PR_LABELS=['01','02','03'];
+/* SVG frame paths for 320×400 viewBox */
+var PR_FRAMES=[
+  /* hexagon flat-top: polygon(25%,0% | 75%,0% | 100%,50% | 75%,100% | 25%,100% | 0%,50%) */
+  ['M 80 0 L 240 0 L 320 200 L 240 400 L 80 400 L 0 200 Z',
+   'M 92 20 L 228 20 L 300 200 L 228 380 L 92 380 L 20 200 Z'],
+  /* saicon arrow (scaled to 320×400 from 480×560) */
+  ['M 20 17 L 165 17 L 302 200 L 165 383 L 20 383 L 158 200 Z',
+   'M 34 34 L 162 34 L 282 200 L 162 366 L 34 366 L 158 200 Z'],
+  /* hexagon pointy-top: polygon(50%,0% | 100%,25% | 100%,75% | 50%,100% | 0%,75% | 0%,25%) */
+  ['M 160 0 L 320 100 L 320 300 L 160 400 L 0 300 L 0 100 Z',
+   'M 160 20 L 300 110 L 300 290 L 160 380 L 20 290 L 20 110 Z']
+];
+var PR_FILTERS=[
+  'hue-rotate(0deg) saturate(0.82) brightness(0.86)',
+  'hue-rotate(80deg) saturate(0.82) brightness(0.84)',
+  'hue-rotate(200deg) saturate(0.8) brightness(0.85)'
+];
+
+var prScroll=document.getElementById('prScroll');
+var prClip=document.getElementById('prShapeClip');
+var prImg=document.getElementById('prShapeImg');
+var prGhost=document.getElementById('prGhost');
+var prCountNum=document.getElementById('prCountNum');
+var prFP=document.getElementById('prFramePath');
+var prFI=document.getElementById('prFrameInner');
+var prPanels=[];
+for(var j=0;j<PR_COUNT;j++)prPanels.push(document.getElementById('prPanel'+j));
+var prDots=document.querySelectorAll('.pr-dot');
+var currentPr=0;
+
+function setPrinciple(idx){
+  if(idx===currentPr)return;
+  currentPr=idx;
+  if(prClip)prClip.style.clipPath=PR_CLIPS[idx];
+  if(prImg)prImg.style.filter=PR_FILTERS[idx];
+  if(prGhost)prGhost.textContent=PR_GHOST[idx];
+  if(prCountNum)prCountNum.textContent=PR_LABELS[idx];
+  if(prFP&&prFI){
+    prFP.setAttribute('d',PR_FRAMES[idx][0]);
+    prFI.setAttribute('d',PR_FRAMES[idx][1]);
+    prFP.classList.remove('on');prFI.classList.remove('on');
+    void prFP.getBoundingClientRect();
+    prFP.classList.add('on');prFI.classList.add('on');
+  }
+  prPanels.forEach(function(p,i){if(p)p.classList.toggle('on',i===idx)});
+  prDots.forEach(function(d,i){d.classList.toggle('on',i===idx)});
+}
+function onPrScroll(){
+  if(!prScroll)return;
+  var rect=prScroll.getBoundingClientRect();
+  var totalH=prScroll.offsetHeight-window.innerHeight;
+  var scrolled=Math.max(0,Math.min(totalH,-rect.top));
+  var pct=totalH>0?scrolled/totalH:0;
+  var inner=Math.max(0,Math.min(1,(pct-.02)/.96));
+  setPrinciple(Math.min(PR_COUNT-1,Math.round(inner*(PR_COUNT-1))));
+}
+window.addEventListener('scroll',onPrScroll,{passive:true});
+/* Init first frame */
+if(prFP&&prFI){
+  prFP.setAttribute('d',PR_FRAMES[0][0]);
+  prFI.setAttribute('d',PR_FRAMES[0][1]);
+  prFP.classList.add('on');prFI.classList.add('on');
+}
+onPrScroll();
+
+prDots.forEach(function(dot){
+  dot.addEventListener('click',function(){
+    var pr=parseInt(this.getAttribute('data-pr'),10);
+    if(!prScroll)return;
+    var totalH=prScroll.offsetHeight-window.innerHeight;
+    var frac=PR_COUNT>1?pr/(PR_COUNT-1):0;
+    window.scrollTo({top:prScroll.offsetTop+frac*totalH*.96+totalH*.02,behavior:'smooth'});
+  });
+});
+
+/* COUNT-UP */
+function easeOut(t){return 1-Math.pow(1-t,3)}
+function animCount(el,target,dur){
+  var start=null;
+  (function step(ts){
+    if(!start)start=ts;
+    var p=Math.min(1,(ts-start)/dur);
+    el.textContent=Math.round(easeOut(p)*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  })(performance.now());
+}
+var cntIO=new IntersectionObserver(function(ents){
+  ents.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var item=e.target,t=parseInt(item.getAttribute('data-target'),10);
+    var el=item.querySelector('.cnt'),bar=item.querySelector('.scale-bar');
+    if(el&&!isNaN(t))animCount(el,t,1200);
+    if(bar)setTimeout(function(){bar.classList.add('counted')},200);
+    cntIO.unobserve(item);
+  });
+},{threshold:0.3});
+document.querySelectorAll('.scale-item').forEach(function(el){cntIO.observe(el)});
+
+})();
+</script>
+</body>
+</html>
